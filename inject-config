@@ -1,0 +1,28 @@
+#!/bin/sh
+
+if [ $SERVICE = "encore" ]; then
+
+echo 'location /build/ {';
+cat <<END
+    proxy_pass https://$SERVICE:$PORT;
+END
+echo '     proxy_set_header Host $host;';
+echo '     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;';
+echo '     proxy_set_header Host $http_host;';
+echo '     proxy_set_header X-Forwarded-Proto https;';
+echo '     proxy_set_header X-Real-IP $remote_addr;';
+echo '     proxy_redirect off;';
+echo '     proxy_http_version 1.1;';
+echo '}';
+
+echo 'location /ws {';
+cat <<END
+    proxy_pass https://$SERVICE:$PORT;
+END
+echo '     proxy_http_version 1.1;';
+echo '     proxy_set_header Upgrade $http_upgrade;';
+echo '     proxy_set_header Connection $connection_upgrade;';
+echo '     proxy_set_header Host $host;';
+echo '}';
+
+fi
