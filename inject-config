@@ -32,7 +32,7 @@ if [ $SERVICE = "mailhog" ]; then
 echo 'location /mailhog/ {';
 echo '    rewrite /mailhog/(.*) /$1 break;';
 cat <<END
-    proxy_pass https://$SERVICE:$PORT;
+    proxy_pass http://$SERVICE:$PORT;
 END
 echo '    proxy_set_header Host             $host;';
 echo '    proxy_set_header    X-Real-IP        $remote_addr;';
@@ -50,6 +50,6 @@ echo '    proxy_set_header Connection "upgrade";';
 echo '    proxy_http_version 1.1;';
 echo '    proxy_redirect off;';
 echo '    proxy_buffering off;';
-}
+echo '}'
 
-# fi
+fi
