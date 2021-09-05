@@ -1,14 +1,4 @@
-FROM xigen/nginx
-#FROM nginx:mainline-alpine
-#FROM nginx:alpine
-
-#WORKDIR /var/www
-
-#COPY servers.conf /etc/nginx/conf/servers.conf
-#COPY --from=medleybox/webapp:latest /app/public /var/www/public
-#COPY --from=medleybox/webapp:latest /app/public /var/www/public
-
-#RUN ls -alsh /var/www/public
+FROM nginx:mainline-alpine
 
 RUN touch /etc/nginx/proxy.conf; mkdir -p /etc/nginx/bin/;
 
