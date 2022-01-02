@@ -8,6 +8,7 @@ COPY inject-config /etc/nginx/bin/
 RUN chmod +x /etc/nginx/bin/*
 
 COPY --from=ghcr.io/medleybox/webapp:master /var/www/public /var/www/public
+COPY --from=ghcr.io/medleybox/frontend:master /app /var/www/public
 
 EXPOSE 80
 EXPOSE 443

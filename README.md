@@ -5,7 +5,7 @@ Nginx docker image used to run Medleybox.
 A github action has been setup to automatically build and push the docker image within this repo when commits are pushed.
 
 ## Build
-docker build -t ghcr.io/medleybox/nginx .
+docker build -t ghcr.io/medleybox/nginx:master .
 
 ## Push
-docker ghcr.io/medleybox/nginx
+docker ghcr.io/medleybox/nginx:master

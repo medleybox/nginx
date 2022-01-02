@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 ENCORE_PORT=${ENCORE_PORT:-443}
 ENCORE_SERVICE=${ENCORE_SERVICE:-encore}
 
@@ -9,6 +8,7 @@ MAILHOG_SERVICE=${MAILHOG_SERVICE:-mailhog}
 
 nginx -v
 
+# Wait for services to start up
 sleep 5;
 
 # Reset the proxy config
