@@ -8,4 +8,4 @@ A github action has been setup to automatically build and push the docker image 
 docker build -t ghcr.io/medleybox/nginx:master .
 
 ## Push
-docker ghcr.io/medleybox/nginx:master
+docker push ghcr.io/medleybox/nginx:master

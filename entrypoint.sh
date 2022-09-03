@@ -16,8 +16,7 @@ PGADMIN_PORT=${PGADMIN_PORT:-80}
 PGADMIN_SERVICE=${PGADMIN_SERVICE:-pgadmin}
 
 nginx -v
-
-if [ "${APP_DEV}" = "prod" ]; then
+if [ "${APP_ENV}" == "prod" ]; then
     nginx -c /etc/nginx/nginx.conf;
     exit 0;
 fi;
