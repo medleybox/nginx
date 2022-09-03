@@ -2,7 +2,7 @@
 
 if [ $SERVICE = "encore" ]; then
 
-echo 'location ~ ^/build {';
+echo 'location /build/ {';
 cat <<END
     proxy_pass https://$SERVICE:$PORT;
 END
