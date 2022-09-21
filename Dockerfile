@@ -4,8 +4,7 @@ ENV APP_ENV prod
 RUN touch /etc/nginx/proxy.conf; mkdir -p /etc/nginx/bin/;
 
 COPY nginx.conf app.key app.pem /etc/nginx/
-COPY entrypoint.sh /etc/nginx/bin/
-COPY inject-config /etc/nginx/bin/
+COPY entrypoint.sh inject-config wait-for-service /etc/nginx/bin/
 RUN chmod +x /etc/nginx/bin/*
 
 COPY --from=ghcr.io/medleybox/webapp:master /var/www/public /var/www/public

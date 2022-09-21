@@ -1,0 +1,19 @@
+export SERVICE=$1
+export PORT=$2
+
+echo "Waiting for $SERVICE service"
+ATTEMPTS_LEFT_TO_REACH_SERVICE=5
+until [ $ATTEMPTS_LEFT_TO_REACH_SERVICE -eq 0 ] || timeout 1 nc -zv $SERVICE $PORT &> /dev/null 2>&1; do
+    sleep 1
+    ATTEMPTS_LEFT_TO_REACH_SERVICE=$((ATTEMPTS_LEFT_TO_REACH_SERVICE-1))
+    echo "Still waiting for $SERVICE to be ready... $ATTEMPTS_LEFT_TO_REACH_SERVICE attempts left"
+done
+
+if [ $ATTEMPTS_LEFT_TO_REACH_SERVICE -eq 0 ]; then
+    echo "Unable to connect to $SERVICE service"
+else
+    echo "Connection successfull to connect to $SERVICE service"
+    echo "Injecting config"
+
+    /etc/nginx/bin/inject-config >> /etc/nginx/proxy.conf
+fi
