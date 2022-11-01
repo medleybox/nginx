@@ -17,15 +17,15 @@ PGADMIN_SERVICE=${PGADMIN_SERVICE:-pgadmin}
 
 SERVICES="MAILHOG CODER PGADMIN FRONTEND ENCORE"
 
+# Reset the proxy and localhost config
+echo "" > /etc/nginx/proxy.conf
+echo "" > /etc/nginx/localhost.conf
+
 nginx -v
 if [ "${APP_ENV}" == "prod" ]; then
     nginx -c /etc/nginx/nginx.conf;
     exit 0;
 fi;
-
-# Reset the proxy and localhost config
-echo "" > /etc/nginx/proxy.conf
-echo "" > /etc/nginx/localhost.conf
 
 for I in $SERVICES
 do
