@@ -54,7 +54,13 @@ echo '}'
 fi
 
 if [ $SERVICE = "frontend" ]; then
-echo 'location ~ /(app|chunk-vendors)\.(css|js) {';
+
+echo 'location ~ ^/app\.css {';
+echo '    root /var/www/public;';
+echo '    try_files $uri /uri;';
+echo '}'
+
+echo 'location ~ /(app|chunk-vendors|.*hot-update)\.(css|json|js) {';
 cat <<END
     proxy_pass https://$SERVICE:$PORT;
 END

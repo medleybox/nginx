@@ -23,8 +23,9 @@ if [ "${APP_ENV}" == "prod" ]; then
     exit 0;
 fi;
 
-# Reset the proxy config
+# Reset the proxy and localhost config
 echo "" > /etc/nginx/proxy.conf
+echo "" > /etc/nginx/localhost.conf
 
 for I in $SERVICES
 do

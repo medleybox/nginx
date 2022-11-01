@@ -3,7 +3,7 @@ ENV APP_ENV prod
 
 RUN touch /etc/nginx/proxy.conf; mkdir -p /etc/nginx/bin/;
 
-COPY nginx.conf app.key app.pem /etc/nginx/
+COPY nginx.conf frontend_localhost_service.conf app.key app.pem /etc/nginx/
 COPY entrypoint.sh inject-config wait-for-service /etc/nginx/bin/
 RUN chmod +x /etc/nginx/bin/*
 

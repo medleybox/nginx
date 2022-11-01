@@ -16,4 +16,8 @@ else
     echo "Injecting config"
 
     /etc/nginx/bin/inject-config >> /etc/nginx/proxy.conf
+
+    if [ $SERVICE = "frontend" ]; then
+        cat /etc/nginx/frontend_localhost_service.conf > /etc/nginx/localhost.conf
+    fi
 fi
