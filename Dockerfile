@@ -17,4 +17,4 @@ STOPSIGNAL SIGTERM
 
 ENTRYPOINT ["/etc/nginx/bin/entrypoint.sh"]
 
-HEALTHCHECK --interval=60s --timeout=1s CMD curl -k -f https://localhost/nginx-health || exit 1
+HEALTHCHECK --interval=60s --timeout=1s CMD curl -k -f https://127.0.0.1/api/healthcheck || exit 1
