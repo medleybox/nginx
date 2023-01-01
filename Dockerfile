@@ -8,6 +8,7 @@ COPY entrypoint.sh inject-config wait-for-service /etc/nginx/bin/
 RUN chmod +x /etc/nginx/bin/*
 
 COPY --from=ghcr.io/medleybox/webapp:master /var/www/public /var/www/public
+COPY --from=ghcr.io/medleybox/vault:master /var/www/public /var/www/vault
 COPY --from=ghcr.io/medleybox/frontend:master /app/dist /var/www/public
 
 EXPOSE 80
