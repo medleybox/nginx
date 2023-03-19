@@ -15,8 +15,6 @@ CODER_SERVICE=${CODER_SERVICE:-coder}
 PGADMIN_PORT=${PGADMIN_PORT:-80}
 PGADMIN_SERVICE=${PGADMIN_SERVICE:-pgadmin}
 
-SERVICES="MAILHOG CODER PGADMIN FRONTEND ENCORE"
-
 # Reset the proxy and localhost config
 echo "" > /etc/nginx/proxy.conf
 echo "" > /etc/nginx/localhost.conf

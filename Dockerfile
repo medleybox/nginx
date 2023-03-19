@@ -1,5 +1,6 @@
 FROM nginx:mainline-alpine
 ENV APP_ENV prod
+ENV SERVICES "MAILHOG CODER PGADMIN FRONTEND ENCORE"
 
 RUN touch /etc/nginx/proxy.conf; mkdir -p /etc/nginx/bin/;
 
