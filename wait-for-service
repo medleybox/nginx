@@ -2,7 +2,7 @@ export SERVICE=$1
 export PORT=$2
 
 echo "Waiting for $SERVICE service"
-ATTEMPTS_LEFT_TO_REACH_SERVICE=5
+ATTEMPTS_LEFT_TO_REACH_SERVICE=60
 until [ $ATTEMPTS_LEFT_TO_REACH_SERVICE -eq 0 ] || timeout 1 nc -zv $SERVICE $PORT &> /dev/null 2>&1; do
     sleep 1
     ATTEMPTS_LEFT_TO_REACH_SERVICE=$((ATTEMPTS_LEFT_TO_REACH_SERVICE-1))
