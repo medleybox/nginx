@@ -12,6 +12,7 @@ Build:
   tags:
     - docker
   script:
+    - sed -i 's/ghcr.io/$CI_REGISTRY/g' Dockerfile
     - >
       docker build
       --pull
