@@ -12,7 +12,6 @@ echo '    proxy_set_header X-Forwarded-Proto https;';
 echo '    proxy_set_header X-Forwarded-Host localhost;';
 echo '    proxy_set_header X-Real-IP $remote_addr;';
 echo '    proxy_redirect off;';
-echo '    proxy_http_version 1.1;';
 echo '}';
 
 echo 'location /ws {';
@@ -24,7 +23,6 @@ echo '    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;';
 echo '    proxy_set_header X-Forwarded-Proto https;';
 echo '    proxy_set_header X-Forwarded-Host localhost;';
 echo '    proxy_set_header X-Real-IP $remote_addr;';
-echo '    proxy_http_version 1.1;';
 echo '    proxy_set_header Upgrade $http_upgrade;';
 echo '    proxy_set_header Connection $connection_upgrade;';
 echo '}';
@@ -46,7 +44,27 @@ echo '    proxy_connect_timeout 1800;';
 echo '    chunked_transfer_encoding on;';
 echo '    proxy_set_header Upgrade $http_upgrade;';
 echo '    proxy_set_header Connection "upgrade";';
-echo '    proxy_http_version 1.1;';
+echo '    proxy_redirect off;';
+echo '    proxy_buffering off;';
+echo '}'
+
+fi
+
+if [ $SERVICE = "minio" ]; then
+
+echo 'location /minio/ {';
+echo '    rewrite /minio/(.*) /$1 break;';
+cat <<END
+    proxy_pass http://$SERVICE:$PORT;
+END
+echo '    proxy_set_header Host $host;';
+echo '    proxy_set_header X-Real-IP $remote_addr;';
+echo '    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;';
+echo '    proxy_read_timeout 1800;';
+echo '    proxy_connect_timeout 1800;';
+echo '    chunked_transfer_encoding on;';
+echo '    proxy_set_header Upgrade $http_upgrade;';
+echo '    proxy_set_header Connection "upgrade";';
 echo '    proxy_redirect off;';
 echo '    proxy_buffering off;';
 echo '}'
@@ -68,7 +86,6 @@ echo "    proxy_set_header Host localhost;";
 echo '    proxy_set_header X-Real-IP $remote_addr;';
 echo '    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;';
 echo '    proxy_set_header X-Forwarded-Host localhost;';
-echo '    proxy_http_version 1.1;';
 echo '    proxy_redirect off;';
 echo '    proxy_buffering off;';
 echo '}'
@@ -87,7 +104,6 @@ echo '
   proxy_set_header X-Real-IP $remote_addr;
   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
   proxy_set_header X-Forwarded-Proto $scheme;
-  proxy_http_version 1.1;
   proxy_set_header Upgrade $http_upgrade;
   proxy_set_header Connection "upgrade";
 ';
@@ -108,7 +124,6 @@ echo '
   proxy_set_header X-Real-IP $remote_addr;
   proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
   proxy_set_header X-Forwarded-Proto $scheme;
-  proxy_http_version 1.1;
   proxy_set_header Upgrade $http_upgrade;
   proxy_set_header Connection "upgrade";
   proxy_set_header X-Script-Name /pgadmin;

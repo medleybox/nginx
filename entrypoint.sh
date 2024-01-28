@@ -15,6 +15,9 @@ CODER_SERVICE=${CODER_SERVICE:-coder}
 PGADMIN_PORT=${PGADMIN_PORT:-80}
 PGADMIN_SERVICE=${PGADMIN_SERVICE:-pgadmin}
 
+MINIO_PORT=${MINIO_PORT:-9000}
+MINIO_SERVICE=${MINIO_SERVICE:-minio}
+
 # Reset the proxy and localhost config
 echo "" > /etc/nginx/proxy.conf
 echo "" > /etc/nginx/localhost.conf
